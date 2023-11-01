@@ -1,0 +1,11 @@
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNjk1MTg5MzYyLCJleHAiOjE2OTUxODkzODJ9.uNYyyJ1GW9LfL6WJX5M3jCxpffL_27jxiFyyoapXBfY 
+
+###
+POST http:localhost:3000/login/
+Content-Type: application/json
+
+{
+ "email": "admin@gmail.com",
+ "password": "iniadmin"   
+}
