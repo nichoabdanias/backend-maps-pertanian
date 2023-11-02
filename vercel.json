@@ -12,6 +12,5 @@
   "env": {
     "ACCESS_TOKEN_SECRET": "kdjfnknJBhkjlnmsdfmopwiue987u43kfmoksl",
     "REFRESH_TOKEN_SECRET": "jkfhnbcufh83746cb34o8789267cxjsdoij8927"
-    // Tambahkan variabel lingkungan lainnya di sini jika diperlukan
   }
 }
