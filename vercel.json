@@ -1,16 +1,6 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "index.js",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
     { "src": "/(.*)", "dest": "index.js" }
-  ],
-  "env": {
-    "ACCESS_TOKEN_SECRET": "kdjfnknJBhkjlnmsdfmopwiue987u43kfmoksl",
-    "REFRESH_TOKEN_SECRET": "jkfhnbcufh83746cb34o8789267cxjsdoij8927"
-  }
+  ]
 }
