@@ -19,15 +19,16 @@ import curahHujanRouter from './routes/curah_hujan.js';
 import statistikRouter from './routes/statistik.js';
 import regionRouter from './routes/region.js';
 
-// import Users from './models/UserModel.js';
-// import Tanaman_pangan from './models/tanamanPangan.js';
-// import Petani from './models/petaniModel.js';
-// import Kelompok_tani from './models/kelompokTaniModel.js';
-// import Hortikultura from './models/hortikulturaModel.js';
-// import Lahan_pertanian from './models/lahanPertanianModel.js';
-// import Perkebunan from './models/perkebunanModel.js';
+import Users from './models/UserModel.js';
+import Tanaman_pangan from './models/tanamanPanganModel.js';
+import Petani from './models/petaniModel.js';
+import Kelompok_tani from './models/kelompokTaniModel.js';
+import Hortikultura from './models/hortikulturaModel.js';
+import Lahan_pertanian from './models/lahanPertanianModel.js';
+import Perkebunan from './models/perkebunanModel.js';
+import Curah_hujan from './models/curahHujanModel.js';
+import Komoditas_pertanian from './models/komoditasPertanianModel.js';
 // import Curah_hujan from './models/cuacaModel.js';
-// import Komoditas_pertanian from './models/komoditasPertanianModel.js';
 
 dotenv.config();
 const app = express();
@@ -56,15 +57,15 @@ try {
   await dbw.authenticate();
   console.log('Database Wilayah Connected...');
   // Membuat tabel otomatis
-  // await Users.sync();
-  // await Tanaman_pangan.sync();
-  // await Petani.sync();
-  // await Kelompok_tani.sync();
-  // await Hortikultura.sync();
-  // await Lahan_pertanian.sync();
-  // await Perkebunan.sync();
-  // await Curah_hujan.sync();
-  // await Komoditas_pertanian.sync();
+  await Users.sync();
+  await Tanaman_pangan.sync();
+  await Petani.sync();
+  await Kelompok_tani.sync();
+  await Hortikultura.sync();
+  await Lahan_pertanian.sync();
+  await Perkebunan.sync();
+  await Curah_hujan.sync();
+  await Komoditas_pertanian.sync();
 } catch (error) {
   console.log(error);
 }
