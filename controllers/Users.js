@@ -2,6 +2,10 @@ import Users from '../models/UserModel.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+export const getTes = async (req, res) => {
+  console.log('Hello World');
+};
+
 export const getUsers = async (req, res) => {
   try {
     const users = await Users.findAll({
