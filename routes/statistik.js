@@ -2,6 +2,7 @@ import express from 'express';
 import {
   getCurahHujanPertahun,
   getHargaKomoditas,
+  getHortikulturaPerTahun,
   getProduksiPertanianHortikultura,
   getProduksiPertanianPerkebunan,
   getProduksiPertanianTanamanPangan,
@@ -16,6 +17,11 @@ statistikRouter.get(
   '/produksi-pertanian-hortikultura',
   getProduksiPertanianHortikultura
 );
+statistikRouter.get('/hortikultura-per-tahun/:tahun', getHortikulturaPerTahun);
+// statistikRouter.get(
+//   '/produksi-pertanian-hortikultura/:tahun',
+//   getProduksiPertanianHortikultura
+// );
 statistikRouter.get(
   '/produksi-pertanian-tanamanpangan',
   getProduksiPertanianTanamanPangan

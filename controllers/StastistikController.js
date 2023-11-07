@@ -116,6 +116,30 @@ export const getCurahHujanPertahun = async (req, res) => {
   }
 };
 
+// Get Hortikultura pertahun
+export const getHortikulturaPerTahun = async (req, res) => {
+  const tahun = req.params.tahun;
+
+  try {
+    const totalKomoditas = await Hortikultura.findAll({
+      attributes: [
+        'jenis_komoditas',
+        // 'tahun',
+        [Sequelize.fn('sum', Sequelize.col('total_jumlah')), 'total_jumlah'],
+      ],
+      where: { tahun: tahun },
+      group: ['jenis_komoditas', 'tahun'],
+    });
+
+    res.json(totalKomoditas);
+  } catch (error) {
+    console.error('Terjadi kesalahan dalam pengambilan data:', error);
+    res
+      .status(500)
+      .json({ error: 'Terjadi kesalahan dalam pengambilan data.' });
+  }
+};
+
 // Menampilkan Produksi Pertanian Hortikultura pertahun
 export const getProduksiPertanianHortikultura = async (req, res) => {
   // const { tahun } = req.params;
