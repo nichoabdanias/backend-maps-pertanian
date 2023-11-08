@@ -6,18 +6,23 @@ import {
   getProduksiPertanianHortikultura,
   getProduksiPertanianPerkebunan,
   getProduksiPertanianTanamanPangan,
+  getTanamanPanganPerTahun,
   tanggal,
 } from '../controllers/StastistikController.js';
 
 const statistikRouter = express.Router();
 
 statistikRouter.get('/tanggal', tanggal);
+statistikRouter.get('/hortikultura-statistik/:tahun', getHortikulturaPerTahun);
+statistikRouter.get(
+  '/tanaman-pangan-statistik/:tahun',
+  getTanamanPanganPerTahun
+);
 statistikRouter.get('/curah-hujan-pertahun', getCurahHujanPertahun);
 statistikRouter.get(
   '/produksi-pertanian-hortikultura',
   getProduksiPertanianHortikultura
 );
-statistikRouter.get('/hortikultura-per-tahun/:tahun', getHortikulturaPerTahun);
 // statistikRouter.get(
 //   '/produksi-pertanian-hortikultura/:tahun',
 //   getProduksiPertanianHortikultura

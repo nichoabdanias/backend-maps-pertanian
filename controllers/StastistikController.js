@@ -116,7 +116,7 @@ export const getCurahHujanPertahun = async (req, res) => {
   }
 };
 
-// Get Hortikultura pertahun
+// Get Statistik Hortikultura pertahun
 export const getHortikulturaPerTahun = async (req, res) => {
   const tahun = req.params.tahun;
 
@@ -213,6 +213,30 @@ export const getProduksiPertanianHortikultura = async (req, res) => {
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Get Statistik Tanaman Pangan by Tahun
+export const getTanamanPanganPerTahun = async (req, res) => {
+  const tahun = req.params.tahun;
+
+  try {
+    const totalKomoditas = await Tanaman_pangan.findAll({
+      attributes: [
+        'jenis_komoditas',
+        // 'tahun',
+        [Sequelize.fn('sum', Sequelize.col('total')), 'total'],
+      ],
+      where: { tahun: tahun },
+      group: ['jenis_komoditas', 'tahun'],
+    });
+
+    res.json(totalKomoditas);
+  } catch (error) {
+    console.error('Terjadi kesalahan dalam pengambilan data:', error);
+    res
+      .status(500)
+      .json({ error: 'Terjadi kesalahan dalam pengambilan data.' });
   }
 };
 

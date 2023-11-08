@@ -6,13 +6,14 @@ import {
   postePetani,
   updatePetani,
 } from '../controllers/PetaniController.js';
+import { verifyToken } from '../midleware/VerifyToken.js';
 
 const petaniRouter = express.Router();
 
-petaniRouter.get('/petani', getPetani);
-petaniRouter.get('/petani/:id', getPetaniById);
-petaniRouter.post('/petani', postePetani);
-petaniRouter.put('/petani/:id', updatePetani);
-petaniRouter.delete('/petani/:id', deletePetani);
+petaniRouter.get('/petani', verifyToken, getPetani);
+petaniRouter.get('/petani/:id', verifyToken, getPetaniById);
+petaniRouter.post('/petani', verifyToken, postePetani);
+petaniRouter.put('/petani/:id', verifyToken, updatePetani);
+petaniRouter.delete('/petani/:id', verifyToken, deletePetani);
 
 export default petaniRouter;
