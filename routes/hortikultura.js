@@ -10,14 +10,10 @@ import { verifyToken } from '../midleware/VerifyToken.js';
 
 const holtikulturaRouter = express.Router();
 
-holtikulturaRouter.get('/hortikultura', verifyToken, getHortikultura);
-holtikulturaRouter.get('/hortikultura/:id', verifyToken, getHortikulturaById);
-holtikulturaRouter.post('/hortikultura', verifyToken, postHortikultura);
-holtikulturaRouter.put('/hortikultura/:id', verifyToken, updateHortukultura);
-holtikulturaRouter.delete(
-  '/hortikultura/:id',
-  verifyToken,
-  deleteHortikulturaById
-);
+holtikulturaRouter.get('/hortikultura', getHortikultura);
+holtikulturaRouter.get('/hortikultura/:id', getHortikulturaById);
+holtikulturaRouter.post('/hortikultura', postHortikultura);
+holtikulturaRouter.put('/hortikultura/:id', updateHortukultura);
+holtikulturaRouter.delete('/hortikultura/:id', deleteHortikulturaById);
 
 export default holtikulturaRouter;

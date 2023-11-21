@@ -40,14 +40,14 @@ const port = 5000;
 // };
 
 // app.use(cors(corsOptions));
-// app.use(cors());
-app.use(
-  cors({
-    credentials: true,
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  })
-);
+app.use(cors());
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: 'http://localhost:5173',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   })
+// );
 app.use(cookieParser());
 app.use(express.json());
 

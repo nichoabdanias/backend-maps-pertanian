@@ -13,12 +13,8 @@ const kelompokTaniRouter = express.Router();
 // kelompokTaniRouter.get('/kelompok_tani/:id', kelompokTanibyId);
 kelompokTaniRouter.get('/kelompok_petani', getDataKelompokTani);
 kelompokTaniRouter.get('/kelompok_petani/:id', getDataKelompokTaniById);
-kelompokTaniRouter.post('/kelompok_petani', verifyToken, postKelompokTani);
-kelompokTaniRouter.put('/kelompok_petani/:id', verifyToken, updateKelompokTani);
-kelompokTaniRouter.delete(
-  '/kelompok_petani/:id',
-  verifyToken,
-  deleteKelompokTaniById
-);
+kelompokTaniRouter.post('/kelompok_petani', postKelompokTani);
+kelompokTaniRouter.put('/kelompok_petani/:id', updateKelompokTani);
+kelompokTaniRouter.delete('/kelompok_petani/:id', deleteKelompokTaniById);
 
 export default kelompokTaniRouter;

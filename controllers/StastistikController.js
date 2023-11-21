@@ -95,20 +95,56 @@ export const tanggal = async (req, res) => {
 };
 
 // Curah Hujan Per Tahun
+// export const getCurahHujanPertahun = async (req, res) => {
+//   try {
+//     const tahuns = [2022, 2021];
+//     const curahHujanPerTahun = {};
+
+//     for (const tahun of tahuns) {
+//       const curah_hujan = await Curah_hujan.findAll({
+//         attributes: ['bulan', 'itensitas_hujan'],
+//         where: {
+//           tahun: tahun,
+//         },
+//       });
+//       curahHujanPerTahun[tahun] = curah_hujan;
+//     }
+//     res.json(curahHujanPerTahun);
+//   } catch (error) {
+//     console.error('Error:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
+
 export const getCurahHujanPertahun = async (req, res) => {
   try {
-    const tahuns = [2022, 2021];
+    const years = await Curah_hujan.findAll({
+      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('tahun')), 'tahun']],
+    });
+
     const curahHujanPerTahun = {};
 
-    for (const tahun of tahuns) {
+    for (const year of years) {
       const curah_hujan = await Curah_hujan.findAll({
-        attributes: ['bulan', 'itensitas_hujan'],
+        attributes: [
+          'bulan',
+          'itensitas_hujan',
+          [Sequelize.fn('sum', Sequelize.col('itensitas_hujan')), 'total'],
+        ],
         where: {
-          tahun: tahun,
+          tahun: year.tahun,
         },
+        group: ['bulan'],
       });
-      curahHujanPerTahun[tahun] = curah_hujan;
+
+      // Add data to curahHujanPerTahun
+      curahHujanPerTahun[year.tahun] = curah_hujan.map((item) => ({
+        bulan: item.bulan,
+        itensitas_hujan: item.itensitas_hujan,
+        total: item.dataValues.total,
+      }));
     }
+
     res.json(curahHujanPerTahun);
   } catch (error) {
     console.error('Error:', error);

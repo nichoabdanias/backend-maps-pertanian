@@ -1,37 +1,104 @@
+import { Op } from 'sequelize';
 import Curah_hujan from '../models/curahHujanModel.js';
 
 // Mencari semua data di tabel Curah Hujan
+//Pagination
 export const getCurahHujan = async (req, res) => {
   try {
-    const page = req.query.page || 1;
-    const limit = req.query.limit || 10;
-
-    const { itensitas_hujan, bulan, tahun } = req.query;
-
-    const whereClause = {};
-    if (itensitas_hujan) {
-      whereClause.itensitas_hujan = itensitas_hujan;
-    }
-    if (bulan) {
-      whereClause.bulan = bulan;
-    }
-    if (tahun) {
-      whereClause.tahun = tahun;
-    }
-
-    const offset = (page - 1) * limit;
-
-    const curah_hujan = await Curah_hujan.findAll({
-      attributes: ['id', 'itensitas_hujan', 'bulan', 'tahun'],
-      where: whereClause,
+    const page = parseInt(req.query.page) || 0;
+    const limit = parseInt(req.query.limit) || 10;
+    const search = req.query.search_query || '';
+    const offset = limit * page;
+    const totalRows = await Curah_hujan.count({
+      where: {
+        [Op.or]: [
+          {
+            itensitas_hujan: {
+              [Op.like]: '%' + search + '%',
+            },
+          },
+          {
+            bulan: {
+              [Op.like]: '%' + search + '%',
+            },
+          },
+          {
+            tahun: {
+              [Op.like]: '%' + search + '%',
+            },
+          },
+        ],
+      },
+    });
+    const totalPage = Math.ceil(totalRows / limit);
+    const result = await Curah_hujan.findAll({
+      where: {
+        [Op.or]: [
+          {
+            itensitas_hujan: {
+              [Op.like]: '%' + search + '%',
+            },
+          },
+          {
+            bulan: {
+              [Op.like]: '%' + search + '%',
+            },
+          },
+          {
+            tahun: {
+              [Op.like]: '%' + search + '%',
+            },
+          },
+        ],
+      },
       offset: offset,
       limit: limit,
+      order: [['id', 'DESC']],
     });
-    res.json(curah_hujan);
+    res.json({
+      result: result,
+      page: page,
+      limit: limit,
+      totalRows: totalRows,
+      totalPage: totalPage,
+    });
   } catch (error) {
     console.log(error);
   }
 };
+
+// Kurang Tepat
+// export const getCurahHujan = async (req, res) => {
+//   try {
+//     const page = req.query.page || 1;
+//     const limit = req.query.limit || 10;
+
+//     const { itensitas_hujan, bulan, tahun } = req.query;
+
+//     const whereClause = {};
+//     if (itensitas_hujan) {
+//       whereClause.itensitas_hujan = itensitas_hujan;
+//     }
+//     if (bulan) {
+//       whereClause.bulan = bulan;
+//     }
+//     if (tahun) {
+//       whereClause.tahun = tahun;
+//     }
+
+//     const offset = (page - 1) * limit;
+
+//     const curah_hujan = await Curah_hujan.findAll({
+//       attributes: ['id', 'itensitas_hujan', 'bulan', 'tahun'],
+//       where: whereClause,
+//       offset: offset,
+//       limit: limit,
+//     });
+//     res.json(curah_hujan);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // Mencari Curah Hujan by Id
 export const getCurahHujanById = async (req, res) => {

@@ -14,18 +14,14 @@ import { verifyToken } from '../midleware/VerifyToken.js';
 // import { getLahanPertanian } from '../controllers/LahanPertanianController.js';
 const dashboard = express.Router();
 
-dashboard.get('/total_petani', verifyToken, getTotalPetani);
-dashboard.get('/total_petani_pertahun', verifyToken, getTotalPetaniPerTahun);
-dashboard.get('/jumlah_kelompok_tani', verifyToken, getJumlahKelompokTani);
-dashboard.get('/kelompok_tani', verifyToken, getKelompokTani);
-dashboard.get('/jumlah_lahan', verifyToken, getJumlahLahanPertanian);
-dashboard.get('/jumlah_lahan_pertahun', verifyToken, getLahanPertanianPerTahun);
-dashboard.get('/komoditas_unggulan', verifyToken, getKomoditasUnggulan);
-dashboard.get(
-  '/komoditas_unggulan_tahun',
-  verifyToken,
-  getKomoditasUnggulanPertahun
-);
+dashboard.get('/total_petani', getTotalPetani);
+dashboard.get('/total_petani_pertahun', getTotalPetaniPerTahun);
+dashboard.get('/jumlah_kelompok_tani', getJumlahKelompokTani);
+dashboard.get('/kelompok_tani', getKelompokTani);
+dashboard.get('/jumlah_lahan', getJumlahLahanPertanian);
+dashboard.get('/jumlah_lahan_pertahun', getLahanPertanianPerTahun);
+dashboard.get('/komoditas_unggulan', getKomoditasUnggulan);
+dashboard.get('/komoditas_unggulan_tahun', getKomoditasUnggulanPertahun);
 dashboard.get('/weather', getWeatherData);
 
 export default dashboard;
