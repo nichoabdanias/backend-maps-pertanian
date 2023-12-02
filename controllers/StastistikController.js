@@ -82,39 +82,7 @@ export const tanggal = async (req, res) => {
   };
 
   res.json({ tanggal: formattedDate });
-
-  // const currentDate = new Date();
-  // const day = currentDate.getDate();
-  // const month = currentDate.getMonth() + 1; // Bulan dimulai dari 0, sehingga perlu ditambah 1
-  // const year = currentDate.getFullYear();
-
-  // // Format tanggal dalam bentuk string dengan format 'hari/bulan/tahun'
-  // const formattedDate = `${day}/${month}/${year}`;
-
-  // res.json(`Tanggal hari ini: ${formattedDate}`);
 };
-
-// Curah Hujan Per Tahun
-// export const getCurahHujanPertahun = async (req, res) => {
-//   try {
-//     const tahuns = [2022, 2021];
-//     const curahHujanPerTahun = {};
-
-//     for (const tahun of tahuns) {
-//       const curah_hujan = await Curah_hujan.findAll({
-//         attributes: ['bulan', 'itensitas_hujan'],
-//         where: {
-//           tahun: tahun,
-//         },
-//       });
-//       curahHujanPerTahun[tahun] = curah_hujan;
-//     }
-//     res.json(curahHujanPerTahun);
-//   } catch (error) {
-//     console.error('Error:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// };
 
 export const getCurahHujanPertahun = async (req, res) => {
   try {
@@ -204,48 +172,6 @@ export const getProduksiPertanianHortikultura = async (req, res) => {
     });
 
     res.json(produksiHortikultura);
-
-    // const tanamanPanganData = await Tanaman_pangan.findAll({
-    //   attributes: [
-    //     'jenis_komoditas',
-    //     'tahun',
-    //     [Sequelize.fn('sum', Sequelize.col('total_jumlah')), 'total'],
-    //   ],
-    //   group: ['tahun', 'jenis_komoditas'],
-    // });
-
-    // const perkebunanData = await Perkebunan.findAll({
-    //   attributes: [
-    //     'jenis_komoditas',
-    //     'tahun',
-    //     [Sequelize.fn('sum', Sequelize.col('total_jumlah')), 'total'],
-    //   ],
-    //   group: ['tahun', 'jenis_komoditas'],
-    // });
-
-    // Menggabungkan ketiga data jenis komditas pertanian
-    // const mergedData = [
-    //   ...tanamanPanganData,
-    //   ...hortikulturaData,
-    //   ...perkebunanData,
-    // ];
-
-    // Mengatur data ke dalam format yang diinginkan
-    // const produksiPertanian = {};
-    // tanamanPanganData.forEach((item) => {
-    //   const { tahun, jenis_komoditas, total } = item.dataValues;
-
-    //   if (!produksiPertanian[tahun]) {
-    //     produksiPertanian[tahun] = [];
-    //   }
-
-    //   produksiPertanian[tahun].push({
-    //     jenis_komoditas,
-    //     total: total.toString(),
-    //   });
-    // });
-
-    // res.json(produksiPertanian);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Internal Server Error' });

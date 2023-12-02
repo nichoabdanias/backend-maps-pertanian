@@ -88,51 +88,6 @@ export const getLahanPertanian = async (req, res) => {
   }
 };
 
-// export const getLahanPertanian = async (req, res) => {
-//   try {
-//     const page = req.query.page || 1;
-//     const limit = req.query.limit || 10;
-
-//     const { jenis_lahan, kecamatan, desa, total_jumlah, tahun } = req.query;
-
-//     const whereClause = {};
-//     if (jenis_lahan) {
-//       whereClause.jenis_lahan = jenis_lahan;
-//     }
-//     if (kecamatan) {
-//       whereClause.kecamatan = kecamatan;
-//     }
-//     if (desa) {
-//       whereClause.desa = desa;
-//     }
-//     if (total_jumlah) {
-//       whereClause.total_jumlah = total_jumlah;
-//     }
-//     if (tahun) {
-//       whereClause.tahun = tahun;
-//     }
-
-//     const offset = (page - 1) * limit;
-
-//     const lahan_pertanian = await Lahan_pertanian.findAll({
-//       attributes: [
-//         'id',
-//         'jenis_lahan',
-//         'kecamatan',
-//         'desa',
-//         'total_jumlah',
-//         'tahun',
-//       ],
-//       where: whereClause,
-//       offset: offset,
-//       limit: limit,
-//     });
-//     res.json(lahan_pertanian);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 // Input data Lahan pertanian
 export const postLahanPertanian = async (req, res) => {
   const { jenis_lahan, kecamatan, desa, total_jumlah, tahun } = req.body;

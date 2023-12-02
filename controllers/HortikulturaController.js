@@ -1,9 +1,7 @@
 import Hortikultura from '../models/hortikulturaModel.js';
 import { Op } from 'sequelize';
-// import hortikulturaModel from '../models/hortikulturaModel.js';
 
-// Mencari semua data di tabel holtikultura
-//Pagination
+// Get data holtikultura with pagination
 export const getHortikultura = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 0;
@@ -88,49 +86,7 @@ export const getHortikultura = async (req, res) => {
   }
 };
 
-// export const getHortikultura = async (req, res) => {
-//   try {
-//     const page = req.query.page || 1;
-//     const limit = req.query.limit || 10;
-
-//     const { jenis_komoditas, kecamatan, desa, tahun } = req.query;
-
-//     const whereClause = {};
-//     if (jenis_komoditas) {
-//       whereClause.jenis_komoditas = jenis_komoditas;
-//     }
-//     if (kecamatan) {
-//       whereClause.kecamatan = kecamatan;
-//     }
-//     if (desa) {
-//       whereClause.desa = desa;
-//     }
-//     if (tahun) {
-//       whereClause.tahun = tahun;
-//     }
-
-//     const offset = (page - 1) * limit;
-
-//     const holtikultura = await Hortikultura.findAll({
-//       attributes: [
-//         'id',
-//         'jenis_komoditas',
-//         'kecamatan',
-//         'desa',
-//         'total_jumlah',
-//         'tahun',
-//       ],
-//       where: whereClause,
-//       offset: offset,
-//       limit: limit,
-//     });
-//     res.json(holtikultura);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// Mencari hortikultura by Id
+// Get hortikultura by Id
 export const getHortikulturaById = async (req, res) => {
   const { id } = req.params;
 
@@ -190,7 +146,7 @@ export const postHortikultura = async (req, res) => {
   }
 };
 
-// Memperbarui data  by Id
+// Update data  by Id
 export const updateHortukultura = async (req, res) => {
   const { id } = req.params; // Menggunakan req.params untuk mendapatkan ID
 

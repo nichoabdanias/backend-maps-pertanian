@@ -97,53 +97,6 @@ export const getDataKelompokTani = async (req, res) => {
   }
 };
 
-// export const getDataKelompokTani = async (req, res) => {
-//   try {
-//     const page = req.query.page || 1;
-//     const limit = req.query.limit || 10;
-
-//     const { nama_kelompok_tani, alamat, tahun_berdiri, nama_ketua, kecamatan } =
-//       req.query;
-
-//     const whereClause = {};
-//     if (nama_kelompok_tani) {
-//       whereClause.nama_kelompok_tani = nama_kelompok_tani;
-//     }
-//     if (alamat) {
-//       whereClause.alamat = alamat;
-//     }
-//     if (tahun_berdiri) {
-//       whereClause.tahun_berdiri = tahun_berdiri;
-//     }
-//     if (nama_ketua) {
-//       whereClause.nama_ketua = nama_ketua;
-//     }
-//     if (kecamatan) {
-//       whereClause.kecamatan = kecamatan;
-//     }
-
-//     const offset = (page - 1) * limit;
-
-//     const kelompok_tani = await Kelompok_tani.findAll({
-//       attributes: [
-//         'id',
-//         'nama_kelompok_tani',
-//         'nomor_register',
-//         'alamat',
-//         'tahun_berdiri',
-//         'nama_ketua',
-//         'kecamatan',
-//       ],
-//       where: whereClause,
-//       offset: offset,
-//       limit: limit,
-//     });
-//     res.json(kelompok_tani);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 // Mencari data kelompok tani by Id
 export const getDataKelompokTaniById = async (req, res) => {
   const { id } = req.params;

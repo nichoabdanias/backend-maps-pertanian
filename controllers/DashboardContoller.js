@@ -28,7 +28,7 @@ export const getTotalPetani = async (req, res) => {
   }
 };
 
-// Total petani berdasarkan tahun
+// Total petani by tahun
 export const getTotalPetaniPerTahun = async (req, res) => {
   try {
     // Group the sum of 'total' by year for female farmers

@@ -1,8 +1,7 @@
 import { Op } from 'sequelize';
 import Curah_hujan from '../models/curahHujanModel.js';
 
-// Mencari semua data di tabel Curah Hujan
-//Pagination
+// Get data Curah Hujan with Pagination
 export const getCurahHujan = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 0;
@@ -67,40 +66,7 @@ export const getCurahHujan = async (req, res) => {
   }
 };
 
-// Kurang Tepat
-// export const getCurahHujan = async (req, res) => {
-//   try {
-//     const page = req.query.page || 1;
-//     const limit = req.query.limit || 10;
-
-//     const { itensitas_hujan, bulan, tahun } = req.query;
-
-//     const whereClause = {};
-//     if (itensitas_hujan) {
-//       whereClause.itensitas_hujan = itensitas_hujan;
-//     }
-//     if (bulan) {
-//       whereClause.bulan = bulan;
-//     }
-//     if (tahun) {
-//       whereClause.tahun = tahun;
-//     }
-
-//     const offset = (page - 1) * limit;
-
-//     const curah_hujan = await Curah_hujan.findAll({
-//       attributes: ['id', 'itensitas_hujan', 'bulan', 'tahun'],
-//       where: whereClause,
-//       offset: offset,
-//       limit: limit,
-//     });
-//     res.json(curah_hujan);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// Mencari Curah Hujan by Id
+// Get Curah Hujan by Id
 export const getCurahHujanById = async (req, res) => {
   const { id } = req.params;
 
@@ -122,7 +88,7 @@ export const getCurahHujanById = async (req, res) => {
   }
 };
 
-// Menambah Data Curah Hujan
+// Add Data Curah Hujan
 export const postCurahHujan = async (req, res) => {
   const { itensitas_hujan, bulan, tahun } = req.body;
 
@@ -132,7 +98,7 @@ export const postCurahHujan = async (req, res) => {
       return res.status(400).json({ error: 'Harap isi semua field.' });
     }
 
-    // Simpan data curah hujan ke database
+    // Save data curah hujan to database
     const newCurahHujan = await Curah_hujan.create({
       itensitas_hujan,
       bulan,
@@ -151,11 +117,11 @@ export const postCurahHujan = async (req, res) => {
   }
 };
 
-// Memperbarui data  by Id
+// Update data  by Id
 export const updateCurahHujan = async (req, res) => {
-  const { id } = req.params; // Menggunakan req.params untuk mendapatkan ID
+  const { id } = req.params; // use req.params to get Id
 
-  // Dapatkan nilai yang ingin Anda perbarui dari body request
+  // Get the value you want to update from the request body
   const { itensitas_hujan, bulan, tahun } = req.body;
 
   try {
@@ -180,7 +146,7 @@ export const updateCurahHujan = async (req, res) => {
   }
 };
 
-// Menghapus data by Id
+// Delete data by Id
 export const deleteCurahHujanById = async (req, res) => {
   const { id } = req.params;
 

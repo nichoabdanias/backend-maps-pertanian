@@ -118,44 +118,6 @@ export const postPerkebunan = async (req, res) => {
   }
 };
 
-// Get all Petanis from the database.
-// export const getPerkebunan = async (req, res) => {
-//   try {
-//     const page = req.query.page || 1;
-//     const limit = req.query.limit || 10;
-
-//     const { jenis_komoditas, kecamatan, desa, tahun } = req.query;
-
-//     const whereClause = {};
-//     if (jenis_komoditas) {
-//       whereClause.jenis_komoditas = jenis_komoditas;
-//     }
-//     if (kecamatan) {
-//       whereClause.kecamatan = kecamatan;
-//     }
-//     if (desa) {
-//       whereClause.desa = desa;
-//     }
-//     if (tahun) {
-//       whereClause.tahun = tahun;
-//     }
-
-//     const offset = (page - 1) * limit;
-
-//     Perkebunan.findAll({
-//       where: whereClause,
-//       offset: offset,
-//       limit: limit,
-//     }).then((data) => {
-//       res.send(data);
-//     });
-//   } catch (error) {
-//     res.status(500).send({
-//       message: err.message || 'Some error occurred while retrieving petani.',
-//     });
-//   }
-// };
-
 // Find a single perkebuanan with an id
 export const getPerkebunanById = async (req, res) => {
   try {

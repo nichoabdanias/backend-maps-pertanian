@@ -118,44 +118,6 @@ export const postePetani = async (req, res) => {
   }
 };
 
-// // Get all Petanis from the database.
-// export const getPetani = async (req, res) => {
-//   try {
-//     const page = req.query.page || 1;
-//     const limit = req.query.limit || 10;
-
-//     const { jenis_komoditas, kecamatan, desa, tahun } = req.query;
-
-//     const whereClause = {};
-//     if (jenis_komoditas) {
-//       whereClause.jenis_kelamin = jenis_kelamin;
-//     }
-//     if (kecamatan) {
-//       whereClause.kecamatan = kecamatan;
-//     }
-//     if (desa) {
-//       whereClause.desa = desa;
-//     }
-//     if (tahun) {
-//       whereClause.tahun = tahun;
-//     }
-
-//     const offset = (page - 1) * limit;
-
-//     Petani.findAll({
-//       where: whereClause,
-//       offset: offset,
-//       limit: limit,
-//     }).then((data) => {
-//       res.send(data);
-//     });
-//   } catch (error) {
-//     res.status(500).send({
-//       message: err.message || 'Some error occurred while retrieving petani.',
-//     });
-//   }
-// };
-
 // Find a single Petani with an id
 export const getPetaniById = async (req, res) => {
   try {

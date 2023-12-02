@@ -2,69 +2,7 @@
 import Tanaman_pangan from '../models/tanamanPanganModel.js';
 import { Op } from 'sequelize';
 
-// Mencari semua data di tabel tanaman pangan
-// export const getTanamanPangan = async (req, res) => {
-//   try {
-//     const tanaman_pangan = await tanamanPanganModel.findAll({
-//       attributes: [
-//         'id',
-//         'jenis_komoditas',
-//         'kecamatan',
-//         'desa',
-//         'total',
-//         'tahun',
-//       ],
-//     });
-//     res.json(tanaman_pangan);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// Menampilkan limit 10 data
-// export const getTanamanPangan = async (req, res) => {
-//   try {
-//     const page = req.query.page || 1;
-//     const limit = req.query.limit || 10;
-//     const { jenis_komoditas, kecamatan, desa, tahun } = req.query;
-
-//     const whereClause = {};
-//     if (jenis_komoditas) {
-//       whereClause.jenis_komoditas = jenis_komoditas;
-//     }
-//     if (kecamatan) {
-//       whereClause.kecamatan = kecamatan;
-//     }
-//     if (desa) {
-//       whereClause.desa = desa;
-//     }
-//     if (tahun) {
-//       whereClause.tahun = tahun;
-//     }
-
-//     const offset = (page - 1) * limit;
-
-//     const tanaman_pangan = await Tanaman_pangan.findAll({
-//       attributes: [
-//         'id',
-//         'jenis_komoditas',
-//         'kecamatan',
-//         'desa',
-//         'total',
-//         'tahun',
-//       ],
-//       where: whereClause,
-//       offset: offset,
-//       limit: limit,
-//     });
-
-//     res.json(tanaman_pangan);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// Pagination
+// Get Tanaman Pangan with Pagination
 export const getTanamanPangan = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 0;
